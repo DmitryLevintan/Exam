@@ -11,9 +11,7 @@ private:
     double value;
 public:
     explicit Leaf(double value) : value(value) {}
-    
-    // Метод evaluate возвращает значение листа
-    double evaluate() const override;
+    double evaluate() const override; // возвращает значение листа
 };
 
 class BinaryOperator : public Node {
@@ -21,41 +19,29 @@ protected:
     std::unique_ptr<Node> left;
     std::unique_ptr<Node> right;
 public:
-    BinaryOperator(std::unique_ptr<Node>&& left, std::unique_ptr<Node>&& right)
-        : left(std::move(left)), right(std::move(right)) {}
+    BinaryOperator(std::unique_ptr<Node>&& left, std::unique_ptr<Node>&& right);
 };
 
 class Add : public BinaryOperator {
 public:
     using BinaryOperator::BinaryOperator;
-    
-    // Метод evaluate выполняет сложение значений левого и правого поддерева
-    double evaluate() const override;
+    double evaluate() const override; // сложение значений
 };
 
-// Узел вычитания
 class Subtract : public BinaryOperator {
 public:
     using BinaryOperator::BinaryOperator;
-    
-    // Метод evaluate выполняет вычитание значений левого и правого поддерева
-    double evaluate() const override;
+    double evaluate() const override; // сложение значений
 };
 
-// Узел умножения
 class Multiply : public BinaryOperator {
 public:
     using BinaryOperator::BinaryOperator;
-    
-    //умножение значений левого и правого поддерева
-    double evaluate() const override;
+    double evaluate() const override; // умножение значений
 };
 
-// Узел деления
 class Divide : public BinaryOperator {
 public:
     using BinaryOperator::BinaryOperator;
-    
-    //деление значений левого и правого поддерева
-    double evaluate() const override;
+    double evaluate() const override; // деление значений
 };
